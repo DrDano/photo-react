@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { validateEmail } from "../../utils/helpers";
 
 export default function ContactForm() {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -9,12 +12,27 @@ export default function ContactForm() {
   const { name, email, message } = formState;
 
   function handleChange(e) {
-    setFormState({...formState, [e.target.name]: e.target.value })
+    if (e.target.name === email) {
+      const isValid = validateEmail(e.target.value);
+      if (!isValid) {
+        setErrorMessage('Your email is invalid.');
+      } else {
+        setErrorMessage('');
+      }
+    } else {
+    if (!e.target.value.length) {
+      setErrorMessage(`${e.target.name} is required.`);
+    } else {
+      setErrorMessage('');
+    }
+  }
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+    console.log("errorMessage", errorMessage)
   }
 
   function handleSubmit(e) {
-      e.preventDefault();
-      console.log(formState);
+    e.preventDefault();
+    console.log(formState);
   }
 
   return (
@@ -32,10 +50,20 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="email">Email address:</label>
-          <input type="email" defaultValue={email} name="email" onChange={handleChange}/>
+          <input
+            type="email"
+            defaultValue={email}
+            name="email"
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <textarea name="message" defaultValue={message} rows="5" onChange={handleChange} />
+          <textarea
+            name="message"
+            defaultValue={message}
+            rows="5"
+            onChange={handleChange}
+          />
         </div>
         <button type="submit">Submit</button>
       </form>
