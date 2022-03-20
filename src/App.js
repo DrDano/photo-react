@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <Nav currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}></Nav>
+      <Nav categories={categories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}></Nav>
       <main>
         <Gallery currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}></Gallery>
         <About></About>
