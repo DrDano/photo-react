@@ -15,19 +15,18 @@ export default function ContactForm() {
     if (e.target.name === email) {
       const isValid = validateEmail(e.target.value);
       if (!isValid) {
-        setErrorMessage('Your email is invalid.');
+        setErrorMessage("Your email is invalid.");
       } else {
-        setErrorMessage('');
+        setErrorMessage("");
       }
     } else {
-    if (!e.target.value.length) {
-      setErrorMessage(`${e.target.name} is required.`);
-    } else {
-      setErrorMessage('');
+      if (!e.target.value.length) {
+        setErrorMessage(`${e.target.name} is required.`);
+      } else {
+        setErrorMessage("");
+      }
     }
-  }
     setFormState({ ...formState, [e.target.name]: e.target.value });
-    console.log("errorMessage", errorMessage)
   }
 
   function handleSubmit(e) {
@@ -45,7 +44,7 @@ export default function ContactForm() {
             type="text"
             defaultValue={name}
             name="name"
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -54,7 +53,7 @@ export default function ContactForm() {
             type="email"
             defaultValue={email}
             name="email"
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -62,9 +61,14 @@ export default function ContactForm() {
             name="message"
             defaultValue={message}
             rows="5"
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
         <button type="submit">Submit</button>
       </form>
     </section>
