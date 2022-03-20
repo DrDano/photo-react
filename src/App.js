@@ -3,6 +3,7 @@ import "./App.css";
 import About from "./components/About";
 import Nav from "./components/Nav";
 import Gallery from "./components/Gallery";
+import ContactForm from "./components/Contact";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     <div>
       <Nav categories={categories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}></Nav>
       <main>
+        <ContactForm></ContactForm>
         <Gallery currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}></Gallery>
         <About></About>
       </main>
