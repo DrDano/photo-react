@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "../Modal"
 
 
 export default function PhotoList({category}) {
@@ -133,6 +134,7 @@ export default function PhotoList({category}) {
           />
         ))}
       </div>
+      <Modal></Modal>
     </div>
   );
 }
