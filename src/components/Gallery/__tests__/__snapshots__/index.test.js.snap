@@ -36,6 +36,7 @@ exports[`Gallery is rendering matches snapshot 1`] = `
           src="3.jpg"
         />
       </div>
+      <div />
     </div>
   </section>
 </DocumentFragment>
